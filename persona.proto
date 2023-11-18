@@ -30,12 +30,27 @@ message ServerMultiplePersonaResponse {
 }
 
 
+message ClientMultiplePersonaRequest {
+	Persona persona = 1;
+}
+
+message ClientMultiplePersonaResponse {
+	string resultado = 1;
+}
+
+
 service PersonaService {
 	//gRPC Unary
 	rpc RegistrarPersona(PersonaRequest) returns (PersonaResponse) {}
 
+
 	//gRPC Server Streming
 	//que devuelva un conjunto de responses con la palabra reservada stream
 	rpc RegistrarPersonasServidorMultiple(ServerMultiplePersonaRequest) returns (stream ServerMultiplePersonaResponse){}
+
+
+	//Registrar el servicio ClientMultiplePersonaResponse
+	//el metodo debe implementarse dentro de una clase c#
+	rpc RegistrarPersonaClientMultiple(stream ClientMultiplePersonaRequest) returns (ClientMultiplePersonaResponse){}
 
 };

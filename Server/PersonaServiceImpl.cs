@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 using Vaxi;
@@ -38,7 +39,7 @@ namespace Client
             {
                 ServerMultiplePersonaResponse response = new ServerMultiplePersonaResponse() 
                 { 
-                    Resultado = mensaje 
+                    Resultado = string.Format("el response {0} tiene contenido {1}",i, mensaje ) 
                 };
 
                 await responseStream.WriteAsync(response);
@@ -46,6 +47,25 @@ namespace Client
             }
 
         }
+
+
+        public override async Task<ClientMultiplePersonaResponse> RegistrarPersonaClientMultiple(IAsyncStreamReader<ClientMultiplePersonaRequest> requestStream, ServerCallContext context)
+        {
+            //multiples request, se concatenan
+            string resultado = "";
+
+            while (await requestStream.MoveNext())
+            {
+                resultado += String.Format("Request, mensaje en el servisor {0} {1}", requestStream.Current.Persona.Email, Environment.NewLine);
+            }
+
+            var responseMessage = new ClientMultiplePersonaResponse() { Resultado = resultado };
+
+            return responseMessage;
+
+        }
+
+
 
 
     }

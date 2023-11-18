@@ -3,6 +3,7 @@ using System.IO;
 using Vaxi;
 using System.Threading;
 using Grpc.Core;
+using System.Linq;
 
 namespace Client
 {
@@ -31,31 +32,27 @@ namespace Client
                 Email= "jlas1680@gmail.com"
             };
 
-            //var request = new PersonaRequest()
-            //{
-            //    Persona= persona,
-            //};
-
-
-            var request = new ServerMultiplePersonaRequest()
+            var client = new PersonaService.PersonaServiceClient(canal);
+            //1. crear nuevo request
+            var request = new ClientMultiplePersonaRequest() 
             {
-                Persona = persona,
+                
+                Persona = persona
             };
 
-            //declaracion del nuevo cliente
-            var client = new PersonaService.PersonaServiceClient(canal);
-            //utilizando client, utilizo el metodo RegistrarPersona y le paso el metodo request
-            //que retorna el response al servidor
+            var stream = client.RegistrarPersonaClientMultiple();
 
-            //var response = client.RegistrarPersona(request);
-            var response = client.RegistrarPersonasServidorMultiple(request);
-            //Console.WriteLine($"Response: {response.ResponseStream}"); 
-
-            while (await response.ResponseStream.MoveNext())
+            foreach (int i in Enumerable.Range(1, 10)) 
             {
-                Console.WriteLine($"{response.ResponseStream.Current.Resultado}");
-                await Task.Delay(1000);
+                await stream.RequestStream.WriteAsync(request);
             }
+
+            await stream.RequestStream.CompleteAsync();
+            //flag que indica termino del proceso, respuesta
+            var response = await stream.ResponseAsync;
+
+            //imprimir la respuesta
+            Console.WriteLine($"Response: {response.Resultado}");
 
             canal.ShutdownAsync().Wait();
             Console.ReadKey();
