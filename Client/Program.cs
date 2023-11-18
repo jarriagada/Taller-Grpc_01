@@ -25,34 +25,58 @@ namespace Client
                 }
             });
 
-            var persona = new Persona()
-            {
-                Nombre= "jarriagada",
-                Apellido= "Arr",
-                Email= "jlas1680@gmail.com"
-            };
-
             var client = new PersonaService.PersonaServiceClient(canal);
-            //1. crear nuevo request
-            var request = new ClientMultiplePersonaRequest() 
+
+            //instancio Persona, creo un array de personas y les seteo el Email
+            Persona[] PersonaCollection =
             {
-                
-                Persona = persona
+
+                new Persona() {Email = "jlas1680@gmail_01.com"},
+                new Persona() {Email = "jlas1680@gmail_02.com"},
+                new Persona() {Email = "jlas1680@gmail_03.com"},
+                new Persona() {Email = "jlas1680@gmail_04.com"},
+                new Persona() {Email = "jlas1680@gmail_05.com"},
+                new Persona() {Email = "jlas1680@gmail_06.com"},
+                new Persona() {Email = "jlas1680@gmail_07.com"},
+                new Persona() {Email = "jlas1680@gmail_08.com"},
+                new Persona() {Email = "jlas1680@gmail_09.com"},
+                new Persona() {Email = "jlas1680@gmail_10.com"}
+
             };
 
-            var stream = client.RegistrarPersonaClientMultiple();
+            //instancio la interfaz
+            var stream = client.RegistrarPersonaBidireccional();
 
-            foreach (int i in Enumerable.Range(1, 10)) 
+            //se necesita un objeto para enviar las personas
+            foreach (var persona in PersonaCollection)
             {
+                //Console.WriteLine("enviando al servidor : " + persona.Email);
+                //await stream.RequestStream.WriteAsync(new BidireccionalPersonaRequest
+                //{
+                //    Persona = persona
+                //});
+                var request = new BidireccionalPersonaRequest()
+                {
+                    Persona = persona
+
+                };
+
                 await stream.RequestStream.WriteAsync(request);
             }
 
             await stream.RequestStream.CompleteAsync();
-            //flag que indica termino del proceso, respuesta
-            var response = await stream.ResponseAsync;
 
-            //imprimir la respuesta
-            Console.WriteLine($"Response: {response.Resultado}");
+            var responseCollection = Task.Run(async () =>
+            {
+
+                while (await stream.ResponseStream.MoveNext()) 
+                {
+                    Console.WriteLine("el cliente esta recibiendo del servidor : {0} {1}", stream.ResponseStream.Current.Resultado, Environment.NewLine);
+                }
+
+            });
+           
+            await responseCollection;
 
             canal.ShutdownAsync().Wait();
             Console.ReadKey();

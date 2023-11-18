@@ -66,7 +66,23 @@ namespace Client
         }
 
 
+        public override async Task RegistrarPersonaBidireccional(IAsyncStreamReader<BidireccionalPersonaRequest> requestStream, IServerStreamWriter<BidireccionalPersonaResponse> responseStream, ServerCallContext context)
+        {
+            string resultado = "";
+          
+            while (await requestStream.MoveNext())
+            {
+                resultado += string.Format("comunicacion birireccional {0} {1}", requestStream.Current.Persona.Email, Environment.NewLine );
+                Console.WriteLine( resultado );
+                //crear el response para devolverlo
+                var response = new BidireccionalPersonaResponse() { Resultado = resultado };
 
+                //devolver el response
+                await responseStream.WriteAsync(response);
+            }
+
+
+        }
 
     }
 }
