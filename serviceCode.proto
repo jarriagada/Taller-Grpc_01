@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package vaxi;
+
+message Datapayload{}
+
+service Operaciones {}
+
+
+
+
+
