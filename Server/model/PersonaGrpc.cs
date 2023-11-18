@@ -49,6 +49,10 @@ namespace Vaxi {
     static readonly grpc::Marshaller<global::Vaxi.PersonaRequest> __Marshaller_vaxi_PersonaRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Vaxi.PersonaRequest.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::Vaxi.PersonaResponse> __Marshaller_vaxi_PersonaResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Vaxi.PersonaResponse.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Vaxi.ServerMultiplePersonaRequest> __Marshaller_vaxi_ServerMultiplePersonaRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Vaxi.ServerMultiplePersonaRequest.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::Vaxi.ServerMultiplePersonaResponse> __Marshaller_vaxi_ServerMultiplePersonaResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Vaxi.ServerMultiplePersonaResponse.Parser));
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::Vaxi.PersonaRequest, global::Vaxi.PersonaResponse> __Method_RegistrarPersona = new grpc::Method<global::Vaxi.PersonaRequest, global::Vaxi.PersonaResponse>(
@@ -57,6 +61,14 @@ namespace Vaxi {
         "RegistrarPersona",
         __Marshaller_vaxi_PersonaRequest,
         __Marshaller_vaxi_PersonaResponse);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::Vaxi.ServerMultiplePersonaRequest, global::Vaxi.ServerMultiplePersonaResponse> __Method_RegistrarPersonasServidorMultiple = new grpc::Method<global::Vaxi.ServerMultiplePersonaRequest, global::Vaxi.ServerMultiplePersonaResponse>(
+        grpc::MethodType.ServerStreaming,
+        __ServiceName,
+        "RegistrarPersonasServidorMultiple",
+        __Marshaller_vaxi_ServerMultiplePersonaRequest,
+        __Marshaller_vaxi_ServerMultiplePersonaResponse);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -68,8 +80,28 @@ namespace Vaxi {
     [grpc::BindServiceMethod(typeof(PersonaService), "BindService")]
     public abstract partial class PersonaServiceBase
     {
+      /// <summary>
+      ///gRPC Unary
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>The response to send back to the client (wrapped by a task).</returns>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual global::System.Threading.Tasks.Task<global::Vaxi.PersonaResponse> RegistrarPersona(global::Vaxi.PersonaRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      /// <summary>
+      ///gRPC Server Streming
+      ///que devuelva un conjunto de responses con la palabra reservada stream
+      /// </summary>
+      /// <param name="request">The request received from the client.</param>
+      /// <param name="responseStream">Used for sending responses back to the client.</param>
+      /// <param name="context">The context of the server-side call handler being invoked.</param>
+      /// <returns>A task indicating completion of the handler.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::System.Threading.Tasks.Task RegistrarPersonasServidorMultiple(global::Vaxi.ServerMultiplePersonaRequest request, grpc::IServerStreamWriter<global::Vaxi.ServerMultiplePersonaResponse> responseStream, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -103,25 +135,79 @@ namespace Vaxi {
       {
       }
 
+      /// <summary>
+      ///gRPC Unary
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The response received from the server.</returns>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual global::Vaxi.PersonaResponse RegistrarPersona(global::Vaxi.PersonaRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return RegistrarPersona(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
+      /// <summary>
+      ///gRPC Unary
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The response received from the server.</returns>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual global::Vaxi.PersonaResponse RegistrarPersona(global::Vaxi.PersonaRequest request, grpc::CallOptions options)
       {
         return CallInvoker.BlockingUnaryCall(__Method_RegistrarPersona, null, options, request);
       }
+      /// <summary>
+      ///gRPC Unary
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual grpc::AsyncUnaryCall<global::Vaxi.PersonaResponse> RegistrarPersonaAsync(global::Vaxi.PersonaRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return RegistrarPersonaAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
+      /// <summary>
+      ///gRPC Unary
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual grpc::AsyncUnaryCall<global::Vaxi.PersonaResponse> RegistrarPersonaAsync(global::Vaxi.PersonaRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_RegistrarPersona, null, options, request);
+      }
+      /// <summary>
+      ///gRPC Server Streming
+      ///que devuelva un conjunto de responses con la palabra reservada stream
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+      /// <param name="cancellationToken">An optional token for canceling the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncServerStreamingCall<global::Vaxi.ServerMultiplePersonaResponse> RegistrarPersonasServidorMultiple(global::Vaxi.ServerMultiplePersonaRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return RegistrarPersonasServidorMultiple(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      /// <summary>
+      ///gRPC Server Streming
+      ///que devuelva un conjunto de responses con la palabra reservada stream
+      /// </summary>
+      /// <param name="request">The request to send to the server.</param>
+      /// <param name="options">The options for the call.</param>
+      /// <returns>The call object.</returns>
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncServerStreamingCall<global::Vaxi.ServerMultiplePersonaResponse> RegistrarPersonasServidorMultiple(global::Vaxi.ServerMultiplePersonaRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncServerStreamingCall(__Method_RegistrarPersonasServidorMultiple, null, options, request);
       }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
@@ -137,7 +223,8 @@ namespace Vaxi {
     public static grpc::ServerServiceDefinition BindService(PersonaServiceBase serviceImpl)
     {
       return grpc::ServerServiceDefinition.CreateBuilder()
-          .AddMethod(__Method_RegistrarPersona, serviceImpl.RegistrarPersona).Build();
+          .AddMethod(__Method_RegistrarPersona, serviceImpl.RegistrarPersona)
+          .AddMethod(__Method_RegistrarPersonasServidorMultiple, serviceImpl.RegistrarPersonasServidorMultiple).Build();
     }
 
     /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the service binding logic.
@@ -148,6 +235,7 @@ namespace Vaxi {
     public static void BindService(grpc::ServiceBinderBase serviceBinder, PersonaServiceBase serviceImpl)
     {
       serviceBinder.AddMethod(__Method_RegistrarPersona, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Vaxi.PersonaRequest, global::Vaxi.PersonaResponse>(serviceImpl.RegistrarPersona));
+      serviceBinder.AddMethod(__Method_RegistrarPersonasServidorMultiple, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::Vaxi.ServerMultiplePersonaRequest, global::Vaxi.ServerMultiplePersonaResponse>(serviceImpl.RegistrarPersonasServidorMultiple));
     }
 
   }
