@@ -16,6 +16,7 @@ C:\Users\Administrador\Proyectos\GrpcNET02\GrpcNET02\Server\obj\Debug\net8.0\Ser
 C:\Users\Administrador\Proyectos\GrpcNET02\GrpcNET02\Server\obj\Debug\net8.0\Server.AssemblyInfoInputs.cache
 C:\Users\Administrador\Proyectos\GrpcNET02\GrpcNET02\Server\obj\Debug\net8.0\Server.AssemblyInfo.cs
 C:\Users\Administrador\Proyectos\GrpcNET02\GrpcNET02\Server\obj\Debug\net8.0\Server.csproj.CoreCompileInputs.cache
+C:\Users\Administrador\Proyectos\GrpcNET02\GrpcNET02\Server\obj\Debug\net8.0\Server.sourcelink.json
 C:\Users\Administrador\Proyectos\GrpcNET02\GrpcNET02\Server\obj\Debug\net8.0\Server.csproj.CopyComplete
 C:\Users\Administrador\Proyectos\GrpcNET02\GrpcNET02\Server\obj\Debug\net8.0\Server.dll
 C:\Users\Administrador\Proyectos\GrpcNET02\GrpcNET02\Server\obj\Debug\net8.0\refint\Server.dll

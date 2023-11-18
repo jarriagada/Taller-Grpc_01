@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Client;
+using System;
 using System.IO;
+using Vaxi;
 
 namespace Server
 {
@@ -14,6 +16,8 @@ namespace Server
             {
                 server = new Grpc.Core.Server()
                 {
+
+                    Services = {PersonaService.BindService(new PersonaServiceImpl())},
                     Ports = { new Grpc.Core.ServerPort("127.0.0.1", Port, Grpc.Core.ServerCredentials.Insecure) }
                 };
                 server.Start();
